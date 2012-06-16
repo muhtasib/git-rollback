@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#This command rolls back commits
+# Option -k or -keep, keeps files staged, default is no
+# Option -w or -wipe, wipes files from a rollback all together, default is no
+#TODO: Implement rollback from a commit made to a server
+
+wipe="no"
+keep="no"
+
+rollbackLocal () 
+{ 
+    if [ "$wipe" == "yes" ]
+    then
+	eval git reset --hard HEAD^;
+    else
+	eval git reset --soft HEAD^;
+	if [ "$keep" == "no" ]
+	then
+	  eval git reset;
+	fi
+    fi   
+}
+
+parseLocalArgs() 
+{
+    for var in "$@"
+    do
+	if [ "$var" == "-keep" -o  "$var" == "-k" ]
+	then
+	    keep='yes';
+	elif [ "$var" == "-wipe" -o  "$var" == "-w" ]
+	then
+	    wipe='yes';
+	fi
+    done
+    
+    if [ "$wipe" == "yes" -a "$keep" == "yes" ]
+    then
+        Message="Wipe will not keep any files to be staged. Ignoring keep."
+	echo $Message;
+    fi
+}
+
+case $1 in
+'local')
+
+  Message="You are rolling back your local commit."
+  echo $Message
+  parseLocalArgs $@
+  rollbackLocal
+  ;;
+'remote')
+
+  Message="You are rolling back your remote commit. Not implemented yet."
+  echo $Message
+  ;;
+
+'')
+  Message="Please specify 'local' or 'remote' option."
+  echo $Message
+esac
+
