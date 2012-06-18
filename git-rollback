@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 #This command rolls back commits
-# Option -k or -keep, keeps files staged, default is no
-# Option -w or -wipe, wipes files from a rollback all together, default is no
+# Option -k or --keep, keeps files staged, default is no
+# Option -w or --wipe, wipes files from a rollback all together, default is no
 #TODO: Implement rollback from a commit made to a server
 
 wipe="no"
@@ -26,10 +26,10 @@ parseLocalArgs()
 {
     for var in "$@"
     do
-	if [ "$var" == "-keep" -o  "$var" == "-k" ]
+	if [ "$var" == "--keep" -o  "$var" == "-k" ]
 	then
 	    keep='yes';
-	elif [ "$var" == "-wipe" -o  "$var" == "-w" ]
+	elif [ "$var" == "--wipe" -o  "$var" == "-w" ]
 	then
 	    wipe='yes';
 	fi
