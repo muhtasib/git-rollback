@@ -1,0 +1,76 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "GIT\-ROLLBACK" "1" "June 2012" "" ""
+.
+.SH "NAME"
+\fBgit\-rollback\fR \- Undo a local or remote commit
+.
+.SH "SYNOPSIS"
+\fBgit rollback\fR <local [\-k|\-\-keep][\-w|\-\-wipe] | remote [branch_name]>
+.
+.SH "DESCRIPTION"
+Undo a commit locally or remotely\.
+.
+.SH "OPTIONS"
+\-k | \-\-keep
+.
+.P
+Keep the changes undone staged if you undo a commit locally\. Default, changes are unstaged\.
+.
+.P
+\-w | \-\-wipe
+.
+.P
+Do not keep the changes at all\.
+.
+.P
+branch_name
+.
+.P
+If undoing remotely, the branch you want to undo from\. Default branch is master\.
+.
+.SH "EXAMPLES"
+.
+.nf
+
+$ git rollback local
+You are rolling back your local commit\.
+
+$ git rollback local \-k
+You are rolling back your local commit\.
+
+$ git rollback local \-w
+You are rolling back your local commit\.
+HEAD is now at 4f36a0a 2
+
+$ git rollback remote
+ Is the branch you are currently on the same and up\-to\-date with the branch \'master\' you want to undo the commit from? (y/n) y
+ You are rolling back your remote & local commit\. You want to roll back to:
+ 99e8e8c08841eb5bc427ab7ce57b0e7600f1ed33
+ Total 0 (delta 0), reused 0 (delta 0)
+ To git@github\.com:sampleAuthor/Test\.git
+ + 28cd9f1\.\.\.99e8e8c 99e8e8c08841eb5bc427ab7ce57b0e7600f1ed33 \-> master (forced update)
+ Unstaged changes after reset:
+ M   README\.md
+
+$ git rollback remote documentation_branch
+Is the branch you are currently on the same and up\-to\-date with the branch \'master\' you want to undo the commit from? (y/n) y
+You are rolling back your remote & local commit\. You want to roll back to:
+99e8e8c08841eb5bc427ab7ce57b0e7600f1ed33
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github\.com:sampleAuthor/Test\.git
++ 28cd9f1\.\.\.99e8e8c 99e8e8c08841eb5bc427ab7ce57b0e7600f1ed33 \-> documentation_branch (forced update)
+Unstaged changes after reset:
+M    README\.md
+.
+.fi
+.
+.SH "AUTHOR"
+Written by Leila Muhtasib <\fImuhtasib@gmail\.com\fR>
+.
+.SH "REPORTING BUGS"
+<\fIhttp://github\.com/muhtasib/git\-rollback/issues\fR>
+.
+.SH "SEE ALSO"
+<\fIhttp://github\.com/muhtasib/git\-rollback\fR>
