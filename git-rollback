@@ -44,20 +44,37 @@ parseLocalArgs()
 
 case $1 in
 'local')
+    Message="You are rolling back your local commit."
+    echo $Message
+    parseLocalArgs $@
+    rollbackLocal
+    ;;
 
-  Message="You are rolling back your local commit."
-  echo $Message
-  parseLocalArgs $@
-  rollbackLocal
-  ;;
 'remote')
-
-  Message="You are rolling back your remote commit. Not implemented yet."
-  echo $Message
-  ;;
+    if test -z $2; then
+        branch='master';
+    else
+        branch=$2;
+    fi
+    #Todo: automate these conditions
+    echo "Is the branch you are currently on the same and up-to-date with the branch '$branch' you want to undo the commit from? (y/n)"
+    read input_var
+    case $input_var in
+    'y' )
+        echo 'You are rolling back your remote & local commit. You want to roll back to:'
+        commit=`git log --pretty=oneline --format=%H --max-count=2 | tail -n 1`
+        echo $commit
+        git push -f origin $commit:$branch &&
+        git reset --soft HEAD^ &&
+        git reset
+        ;;
+    'n' ) echo "Please update your branch first."; exit;;
+    esac
+    ;;
 
 '')
-  Message="Please specify 'local' or 'remote' option."
-  echo $Message
+    Message="Please specify 'local' or 'remote' option."
+    echo $Message
+
 esac
 
