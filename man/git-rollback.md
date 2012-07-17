@@ -3,7 +3,7 @@ git-rollback(1) -- Undo a local or remote commit
 
 ## SYNOPSIS
 
-`git rollback` [&lt;local&gt; [-k | --keep][-w | --wipe] | &lt;remote&gt; [branch_name]];
+`git rollback` [&lt;local&gt; [-k | --keep][-w | --wipe] | &lt;remote&gt; [branch_name]]
 
 ## DESCRIPTION
 
