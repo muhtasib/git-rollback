@@ -76,13 +76,17 @@
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p><code>git rollback</code> &lt;local [-k|--keep][-w|--wipe] | remote [branch_name]&gt;</p>
+<p><code>git rollback</code> [&lt;local&gt; [-k | --keep][-w | --wipe] | &lt;remote&gt; [branch_name]];</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
 <p>Undo a commit locally or remotely.</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
+
+<p>local</p>
+
+<p>Specifies the commit to undo is local.</p>
 
 <p>-k | --keep</p>
 
@@ -92,6 +96,10 @@
 
 <p>Do not keep the changes at all.</p>
 
+<p>remote</p>
+
+<p>Specified the commit to undo is remote.</p>
+
 <p>branch_name</p>
 
 <p>If undoing remotely, the branch you want to undo from. Default branch is master.</p>
@@ -100,6 +108,8 @@
 
 <pre><code>$ git rollback local 
 You are rolling back your local commit.
+Unstaged changes after reset:
+M    README.md
 
 $ git rollback local -k
 You are rolling back your local commit.
@@ -119,7 +129,7 @@ $ git rollback remote
  M   README.md
 
 $ git rollback remote documentation_branch
-Is the branch you are currently on the same and up-to-date with the branch 'master' you want to undo the commit from? (y/n) y
+Is the branch you are currently on the same and up-to-date with the branch 'documentation_branch' you want to undo the commit from? (y/n) y
 You are rolling back your remote &amp; local commit. You want to roll back to:
 99e8e8c08841eb5bc427ab7ce57b0e7600f1ed33
 Total 0 (delta 0), reused 0 (delta 0)
@@ -131,20 +141,20 @@ M    README.md
 
 <h2 id="AUTHOR">AUTHOR</h2>
 
-<p>Written by Leila Muhtasib &lt;<a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#109;&#117;&#x68;&#x74;&#x61;&#x73;&#x69;&#x62;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;" data-bare-link="true">&#x6d;&#117;&#104;&#116;&#97;&#x73;&#x69;&#98;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a>&gt;</p>
+<p>Written by Leila Muhtasib &lt;<a data-bare-link="true" href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x6d;&#x75;&#104;&#x74;&#97;&#x73;&#x69;&#98;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#x6d;&#x75;&#x68;&#116;&#x61;&#x73;&#x69;&#x62;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a>&gt;</p>
 
 <h2 id="REPORTING-BUGS">REPORTING BUGS</h2>
 
-<p>&lt;<a href="http://github.com/muhtasib/git-rollback/issues" data-bare-link="true">http://github.com/muhtasib/git-rollback/issues</a>&gt;</p>
+<p>&lt;<a data-bare-link="true" href="http://github.com/muhtasib/git-rollback/issues">http://github.com/muhtasib/git-rollback/issues</a>&gt;</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
-<p>&lt;<a href="http://github.com/muhtasib/git-rollback" data-bare-link="true">http://github.com/muhtasib/git-rollback</a>&gt;</p>
+<p>&lt;<a data-bare-link="true" href="http://github.com/muhtasib/git-rollback">http://github.com/muhtasib/git-rollback</a>&gt;</p>
 
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>June 2012</li>
+    <li class='tc'>July 2012</li>
     <li class='tr'>git-rollback(1)</li>
   </ol>
 

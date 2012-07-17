@@ -2,3 +2,17 @@ git-rollback
 ============
 
 This git extension allows you to undo local and remote commits. 
+
+How to use:
+
+Just drop the 'git-rollback' file into your path, and git will find it. 
+
+You'll be able to use it by typing 'git rollback [options]' just like other git commands. 
+
+To edit your PATH (on Mac OS X):
+
+Open your .profile file, and add:
+
+export PATH=/path/you'd/like/to/place/this/bash/script/in/:$PATH
+
+For more information on how to use the command itself, see documentation on github.

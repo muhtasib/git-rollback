@@ -1,18 +1,24 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "GIT\-ROLLBACK" "1" "June 2012" "" ""
+.TH "GIT\-ROLLBACK" "1" "July 2012" "" ""
 .
 .SH "NAME"
 \fBgit\-rollback\fR \- Undo a local or remote commit
 .
 .SH "SYNOPSIS"
-\fBgit rollback\fR <local [\-k|\-\-keep][\-w|\-\-wipe] | remote [branch_name]>
+\fBgit rollback\fR [<local> [\-k | \-\-keep][\-w | \-\-wipe] | <remote> [branch_name]];
 .
 .SH "DESCRIPTION"
 Undo a commit locally or remotely\.
 .
 .SH "OPTIONS"
+local
+.
+.P
+Specifies the commit to undo is local\.
+.
+.P
 \-k | \-\-keep
 .
 .P
@@ -23,6 +29,12 @@ Keep the changes undone staged if you undo a commit locally\. Default, changes a
 .
 .P
 Do not keep the changes at all\.
+.
+.P
+remote
+.
+.P
+Specified the commit to undo is remote\.
 .
 .P
 branch_name
@@ -36,6 +48,8 @@ If undoing remotely, the branch you want to undo from\. Default branch is master
 
 $ git rollback local
 You are rolling back your local commit\.
+Unstaged changes after reset:
+M    README\.md
 
 $ git rollback local \-k
 You are rolling back your local commit\.
@@ -55,7 +69,7 @@ $ git rollback remote
  M   README\.md
 
 $ git rollback remote documentation_branch
-Is the branch you are currently on the same and up\-to\-date with the branch \'master\' you want to undo the commit from? (y/n) y
+Is the branch you are currently on the same and up\-to\-date with the branch \'documentation_branch\' you want to undo the commit from? (y/n) y
 You are rolling back your remote & local commit\. You want to roll back to:
 99e8e8c08841eb5bc427ab7ce57b0e7600f1ed33
 Total 0 (delta 0), reused 0 (delta 0)
