@@ -3,7 +3,6 @@
 #This command rolls back commits
 # Option -k or --keep, keeps files staged, default is no
 # Option -w or --wipe, wipes files from a rollback all together, default is no
-#TODO: Implement rollback from a commit made to a server
 
 wipe="no"
 keep="no"
@@ -22,30 +21,30 @@ rollbackLocal ()
     fi   
 }
 
-parseLocalArgs() 
+parseLocalArgs ()
 {
-    for var in "$@"
+    while test $# != 0
     do
-	if [ "$var" == "--keep" -o  "$var" == "-k" ]
-	then
-	    keep='yes';
-	elif [ "$var" == "--wipe" -o  "$var" == "-w" ]
-	then
-	    wipe='yes';
-	fi
+	case "$1" in
+            --keep | -k )
+		keep='yes'
+		shift
+		;;
+            --wipe | -w )
+		wipe='yes'
+		if [ "$keep" == "yes" ]; then
+		    echo "Wipe will not keep any files to be staged. Ignoring keep."
+		fi
+		shift
+		;;
+	esac
     done
-    
-    if [ "$wipe" == "yes" -a "$keep" == "yes" ]
-    then
-        Message="Wipe will not keep any files to be staged. Ignoring keep."
-	echo $Message;
-    fi
 }
 
 case $1 in
 'local')
-    Message="You are rolling back your local commit."
-    echo $Message
+    echo "You are rolling back your local commit."
+    shift
     parseLocalArgs $@
     rollbackLocal
     ;;
@@ -56,12 +55,12 @@ case $1 in
     else
         branch=$2;
     fi
-    #Todo: automate these conditions
+    #TODO: automate these conditions
     echo "Is the branch you are currently on the same and up-to-date with the branch '$branch' you want to undo the commit from? (y/n)"
     read input_var
     case $input_var in
     'y' )
-        echo 'You are rolling back your remote & local commit. You want to roll back to:'
+        echo "You are rolling back your remote & local commit. You want to roll back to:"
         commit=`git log --pretty=oneline --format=%H --max-count=2 | tail -n 1`
         echo $commit
         git push -f origin $commit:$branch &&
@@ -73,8 +72,7 @@ case $1 in
     ;;
 
 '')
-    Message="Please specify 'local' or 'remote' option."
-    echo $Message
+    echo "Please specify 'local' or 'remote' option."
 
 esac
 
