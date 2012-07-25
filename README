@@ -16,3 +16,9 @@ Open your .profile file, and add:
 export PATH=/path/you'd/like/to/place/this/bash/script/in/:$PATH
 
 For more information on how to use the command itself, see documentation on github.
+
+------------
+
+If you prefer a python script, use the file ending with .py. Rename to remove the .py
+
+extension, and follow the same steps above. You must have python installed on your machine.
