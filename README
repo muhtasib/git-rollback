@@ -19,6 +19,4 @@ For more information on how to use the command itself, see documentation on gith
 
 ------------
 
-If you prefer a python script, use the file ending with .py. Rename to remove the .py
-
-extension, and follow the same steps above. You must have python installed on your machine.
+If you prefer a python script, use the file ending with .py. Rename to remove the .py extension, and follow the same steps above. You must have python installed on your machine.
